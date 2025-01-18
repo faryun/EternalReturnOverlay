@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace EternalReturnOverlay
 {
@@ -43,17 +44,30 @@ namespace EternalReturnOverlay
 
         public async Task<int> GetUserNumAsync(string nickname)
         {
-            string url = $"https://open-api.bser.io/v1/user/nickname?query={nickname}";
-            HttpResponseMessage response = await _httpClient.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-            string jsonResponse = await response.Content.ReadAsStringAsync();
-
-            using (JsonDocument doc = JsonDocument.Parse(jsonResponse))
+            try
             {
-                JsonElement root = doc.RootElement;
-                JsonElement user = root.GetProperty("user");
-                int userNum = user.GetProperty("userNum").GetInt32();
-                return userNum;
+                string url = $"https://open-api.bser.io/v1/user/nickname?query={nickname}";
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+                string jsonResponse = await response.Content.ReadAsStringAsync();
+
+                using (JsonDocument doc = JsonDocument.Parse(jsonResponse))
+                {
+                    JsonElement root = doc.RootElement;
+                    if (root.TryGetProperty("user", out JsonElement user))
+                    {
+                        int userNum = user.GetProperty("userNum").GetInt32();
+                        return userNum;
+                    }
+                    else
+                    {
+                        throw new UserNotFoundException("존재하지 않는 닉네임입니다.");
+                    }
+                }
+            }
+            catch (HttpRequestException e) when (e.StatusCode == HttpStatusCode.NotFound)
+            {
+                throw new UserNotFoundException("존재하지 않는 닉네임입니다.");
             }
         }
 

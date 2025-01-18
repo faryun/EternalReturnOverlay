@@ -1,9 +1,9 @@
 ﻿<Application x:Class="EternalReturnOverlay.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:EternalReturnOverlay"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <FontFamily x:Key="NexonWarhavenRegular">pack://application:,,,/EternalReturnOverlay;component/Fonts/#워헤이븐 OTF Regular</FontFamily>
+        <FontFamily x:Key="NexonWarhavenBold">pack://application:,,,/EternalReturnOverlay;component/Fonts/#워헤이븐 OTF Bold</FontFamily>
     </Application.Resources>
 </Application>

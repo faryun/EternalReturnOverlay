@@ -2,17 +2,18 @@
 using System.Data;
 using System.Windows;
 
-namespace EternalReturnOverlay;
-
-/// <summary>
-/// Interaction logic for App.xaml
-/// </summary>
-public partial class App : Application
+namespace EternalReturnOverlay
 {
-    private void Application_Startup(object sender, StartupEventArgs e)
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : Application
     {
-        MainWindow mainWindow = new MainWindow();
-        mainWindow.Show();
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+        }
     }
-}
 
+}

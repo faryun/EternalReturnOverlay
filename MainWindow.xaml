@@ -5,27 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EternalReturnOverlay"
         mc:Ignorable="d"
-        Title="Eternal Return Overlay" Height="300" Width="350" 
-        AllowsTransparency="True" Background="Transparent" WindowStyle="None"
+        Title="Control Panel" Height="300" Width="350" Background="Gray"
         MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <Grid>
-         <Border Name="MainBorder" Background="Black" BorderBrush="Gray" BorderThickness="2" CornerRadius="10">
-            <StackPanel>
-                <Grid Margin="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Name="Nick" Text="NickName" FontSize="16" Foreground="White" VerticalAlignment="Center"/>
-                    <Button Name="ChangeNickNameButton" Content="Change Nickname" Click="ChangeNickNameButton_Click" Margin="10,0,0,0" Grid.Column="1"/>
-                </Grid>
-                <!-- 데이터 표시용 요소 추가 -->
-                <TextBlock Name="RP" Text="RP" FontSize="30" Foreground="White" Margin="10"/>
-                <TextBlock Name="Tier" Text="Tier" FontSize="16" Foreground="White" Margin="10"/>
-                <TextBlock Name="Ranking" Text="Ranking" FontSize="16" Foreground="White" Margin="10"/>
-                <TextBlock Name="WinRate" Text="WinRate" FontSize="16" Foreground="White" Margin="10"/>
-                <TextBlock Name="TimerText" Text="Next update in: 0:30" FontSize="16" Foreground="White" Margin="10"/>
-            </StackPanel>
-        </Border>
+        <StackPanel>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="Nick" Text="NickName" FontSize="16" Foreground="White" VerticalAlignment="Center"/>
+                <Button Name="ChangeNickNameButton" Content="Change Nickname" Click="ChangeNickNameButton_Click" Margin="10,0,0,0" Grid.Column="1"/>
+            </Grid>
+            <!-- 오버레이 컨트롤 요소 추가 -->
+            <Button Name="ShowOverlayButton" Content="ShowOverlay" Click="ShowOverlayButton_Click" Margin="10"/>
+            <TextBlock Name="TimerText" Text="Next update in: 0:30" FontSize="16" Foreground="White" Margin="10"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -1,0 +1,22 @@
+﻿<Window x:Class="EternalReturnOverlay.OverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EternalReturnOverlay"
+        mc:Ignorable="d"
+        Title="Eternal Return Overlay" Height="200" Width="350" 
+        AllowsTransparency="True" Background="Transparent" WindowStyle="None"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Grid>
+         <Border Name="MainBorder" Background="Black" BorderBrush="Gray" BorderThickness="2" CornerRadius="10">
+            <StackPanel>
+                <!-- 데이터 표시용 요소 추가 -->
+                <TextBlock Name="RP" Text="RP" FontSize="30" Foreground="White" Margin="10" FontFamily="{DynamicResource NexonWarhavenBold}"/>
+                <TextBlock Name="Tier" Text="Tier" FontSize="20" Foreground="White" Margin="10" FontFamily="{DynamicResource NexonWarhavenBold}"/>
+                <TextBlock Name="Ranking" Text="Ranking" FontSize="20" Foreground="White" Margin="10" FontFamily="{DynamicResource NexonWarhavenBold}"/>
+                <TextBlock Name="WinRate" Text="WinRate" FontSize="20" Foreground="White" Margin="10" FontFamily="{DynamicResource NexonWarhavenBold}"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

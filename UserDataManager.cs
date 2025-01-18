@@ -1,3 +1,5 @@
+using System.Windows.Threading;
+
 public class UserData
 {
     public string? Nickname { get; set; }
@@ -14,23 +16,31 @@ public class UserData
 
 public class UserDataManager
 {
-    private static UserDataManager? _instance;
-    public UserData UserData { get; private set; }
+    private static UserDataManager _instance;
+    public static UserDataManager Instance => _instance ??= new UserDataManager();
+
+    public UserData UserData { get; set; }
+    public TimeSpan SharedTimeSpan { get; set; } = TimeSpan.FromSeconds(30); // 공유된 TimeSpan 객체
+    public DispatcherTimer SharedTimer { get; private set; }
 
     private UserDataManager()
     {
         UserData = new UserData();
+        SharedTimer = new DispatcherTimer();
+        SharedTimer.Interval = TimeSpan.FromSeconds(1);
+        SharedTimer.Tick += SharedTimer_Tick;
+        SharedTimer.Start();
     }
 
-    public static UserDataManager Instance
+    private void SharedTimer_Tick(object? sender, EventArgs e)
     {
-        get
+        if (SharedTimeSpan.TotalSeconds > 0)
         {
-            if (_instance == null)
-            {
-                _instance = new UserDataManager();
-            }
-            return _instance;
+            SharedTimeSpan = SharedTimeSpan.Add(TimeSpan.FromSeconds(-1));
+        }
+        else
+        {
+            SharedTimeSpan = TimeSpan.FromSeconds(30); // 30초 간격으로 재설정
         }
     }
 }

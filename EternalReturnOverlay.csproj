@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <Resource Include="Fonts\NEXON_Warhaven_OTF_Bold.otf" BuildAction="Resource" />
+    <Resource Include="Fonts\NEXON_Warhaven_OTF_Regular.otf" BuildAction="Resource" />
   </ItemGroup>
 
 </Project>
