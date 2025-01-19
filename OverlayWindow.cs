@@ -49,8 +49,8 @@ namespace EternalReturnOverlay
 
         public void UpdateUI()
         {
-            UpdateRP();
             UpdateTier();
+            UpdateRP();
             UpdateRanking();
             UpdateWinRate();
         }
