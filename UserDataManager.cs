@@ -2,7 +2,7 @@ using System.Windows.Threading;
 
 public class UserData
 {
-    public string? Nickname { get; set; }
+    public string Nickname { get; set; }
     public int RP { get; set; }
     public int Ranking { get; set; }
     public int TotalGames { get; internal set; }

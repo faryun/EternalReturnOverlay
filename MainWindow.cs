@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -49,7 +50,6 @@ namespace EternalReturnOverlay
 
                     // FetchUserDataAsync 호출하여 오버레이 업데이트
                     await _overlayWindow.FetchUserDataAsync(newNickName);
-                    _overlayWindow.UpdateUI();
                 }
                 catch (UserNotFoundException ex)
                 {
@@ -73,6 +73,24 @@ namespace EternalReturnOverlay
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private async void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(UserDataManager.Instance.UserData == null || string.IsNullOrEmpty(UserDataManager.Instance.UserData.Nickname))
+            {
+                MessageBox.Show("닉네임을 먼저 입력해주세요.", "오류", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            await _overlayWindow.FetchUserDataAsync(UserDataManager.Instance.UserData.Nickname);
+            //자동 갱신 타이머 초기화
+            UserDataManager.Instance.SharedTimeSpan = TimeSpan.FromSeconds(30);
+            //과도한 요청 방지를 위해 5초간 버튼 비활성화
+            RefreshButton.IsEnabled = false;
+            RefreshButton.Content = "Refreshing...";
+            await Task.Delay(TimeSpan.FromSeconds(5));
+            RefreshButton.IsEnabled = true;
+            RefreshButton.Content = "Refresh";
         }
     }
 }
